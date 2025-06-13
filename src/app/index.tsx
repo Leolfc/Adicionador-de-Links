@@ -1,23 +1,22 @@
-
-import { styles } from "./styles";
-import { View,Image, TouchableOpacity } from "react-native";
-import {MaterialIcons} from "@expo/vector-icons" //*importando o MaterialIcons do expo*/
+import { Category } from "@/components/category";
 import { colors } from "@/styles/colors";
-import { Button } from "@react-navigation/elements";
-
+import { MaterialIcons } from "@expo/vector-icons"; //*importando o MaterialIcons do expo*/
+import { Image, TouchableOpacity, View } from "react-native";
+import { styles } from "./styles";
 export default function () {
   return (
     <View style={styles.container}>
-    <View style={styles.header}>
-    <Image source={require('@/assets/logo.png') } style={styles.logo}/>
+      <View style={styles.header}>
+        <Image source={require("@/assets/logo.png")} style={styles.logo} />
 
-    <TouchableOpacity >
-      <MaterialIcons name="add" size={32} color={colors.green[300]}/>
-    </TouchableOpacity>
+        <TouchableOpacity>
+          <MaterialIcons name="add" size={32} color={colors.green[300]} />
+        </TouchableOpacity>
+      </View>
 
-    </View>
-    <TouchableOpacity><Button >Clique aqui</Button></TouchableOpacity>
+      <Category name="Projetos" icon="code" isSelected  />
+       <Category name="Site" icon="language" isSelected={false} />
+       <Category name="Video" icon="movie" isSelected={false} />
     </View>
   );
 }
-
