@@ -1,10 +1,5 @@
 import { StyleSheet } from "react-native";
 
-
-
-
-
-
 export const styles = StyleSheet.create({ //Estilizações
 container:{
     flexDirection: 'row',
