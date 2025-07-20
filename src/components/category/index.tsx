@@ -10,7 +10,7 @@ type Props = PressableProps & {
   // 'code' | 'language' | 'movie'; // exemplo de icon
 };
 export function Category({ name, icon, isSelected, ...rest }: Props) {  //*desestruturando o rest, pegando propriedades restantes
-const color = isSelected ? colors.green[300] : colors.gray[400]; // Definindo a cor com base na seleção
+const color = isSelected ? colors.green[300] : colors.gray[400]; //*Definindo a cor com base na seleção
 
   return (
     <Pressable style={styles.container} {...rest}>

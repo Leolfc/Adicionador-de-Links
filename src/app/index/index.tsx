@@ -1,16 +1,19 @@
 import { Categories } from "@/components/categories";
 import { Link } from "@/components/links";
+import { Option } from "@/components/option";
 import { colors } from "@/styles/colors";
 import { MaterialIcons } from "@expo/vector-icons"; //*importando o MaterialIcons do expo*/
 import { FlatList, Image, TouchableOpacity, View, Modal, Text } from "react-native";
 import { styles } from "./styles"; //*importando os estilos do arquivo styles.ts
-export default function () {
+import { router, Router } from "expo-router";
+
+export default function Index () {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={require("@/assets/logo.png")} style={styles.logo} />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> router.navigate("/add")}>
           <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
@@ -31,7 +34,7 @@ export default function () {
         contentContainerStyle={styles.linksContent}
         showsVerticalScrollIndicator={false}
       />
-      <Modal transparent visible={true}>
+      <Modal transparent visible={false}>
         <View style={styles.modal}>
         <View style={styles.modalContent}>
           <View style={styles.modalHeader}>
@@ -45,6 +48,10 @@ export default function () {
           <Text style={styles.modalUrl}>
             https://www.rocketseat.com.br/
           </Text>
+          <View style={styles.modalFooter}>
+            <Option name="Excluir" icon="delete" variant="secondary"  />
+            <Option name="Abrir" icon="language"/>
+          </View>
         </View>
         </View>
       </Modal>
