@@ -6,8 +6,12 @@ import { MaterialIcons } from "@expo/vector-icons"; //*importando o MaterialIcon
 import { FlatList, Image, TouchableOpacity, View, Modal, Text } from "react-native";
 import { styles } from "./styles"; //*importando os estilos do arquivo styles.ts
 import { router, Router } from "expo-router";
+import { useState } from "react";
+import { categories } from "@/utils/categories";
 
 export default function Index () {
+const [category, setCategory]= useState(categories[0].name)
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -17,7 +21,7 @@ export default function Index () {
           <MaterialIcons name="add" size={32} color={colors.green[300]} />
         </TouchableOpacity>
       </View>
-      <Categories />
+      <Categories onChange={setCategory} selected={category}/>
 
       <FlatList //*FlatList é um componente que renderiza uma lista de itens de forma eficiente
         data={["1", "2", "3", ]}
