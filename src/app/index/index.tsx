@@ -8,9 +8,27 @@ import { styles } from "./styles"; //*importando os estilos do arquivo styles.ts
 import { router, Router } from "expo-router";
 import { useState } from "react";
 import { categories } from "@/utils/categories";
+import { Alert } from "react-native";
+import { linkStorage, LinkStorage } from "@/storage/link-storage";
+import { useEffect } from "react";
 
 export default function Index () {
+
+const [links, setLinks]= useState<LinkStorage[]>([])
+
 const [category, setCategory]= useState(categories[0].name)
+
+async function getLinks(){
+    try{
+const response = await linkStorage.get()
+setLinks(response)
+    }catch(error){
+        Alert.alert('Erro',"Não foi possivel listar os links!")
+    }
+}
+useEffect(()=>{
+    getLinks()
+},[])
 
   return (
     <View style={styles.container}>
@@ -24,12 +42,12 @@ const [category, setCategory]= useState(categories[0].name)
       <Categories onChange={setCategory} selected={category}/>
 
       <FlatList //*FlatList é um componente que renderiza uma lista de itens de forma eficiente
-        data={["1", "2", "3", ]}
-        keyExtractor={(item) => item}
-        renderItem={() => (
+        data={links}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => (
           <Link
-            name="Rockseat"
-            url="https://www.rocketseat.com.br/"
+            name={item.name}
+            url={item.url}
             onDetails={() => console.log("clicou!!!")}
          
            />
